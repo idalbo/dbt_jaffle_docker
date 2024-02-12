@@ -1,0 +1,9 @@
+.env
+logs/
+.developer/
+
+jaffle_shop/target/
+jaffle_shop/target-base/
+jaffle_shop/dbt_modules/
+jaffle_shop/logs/
+**/.DS_Store
