@@ -1,0 +1,53 @@
+services:
+  dbt-runner:
+    container_name: dbt-jaffle-runner
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_HOST: postgres
+    ports:
+      - "8083:8080"
+      - "8000:8000"
+    depends_on:
+      - postgres
+    tty: true
+    volumes:
+      - ".:/dbt-runner"
+    networks:
+      - dbt_jaffle_network
+    env_file:
+      - ./dotenv/.env
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 65432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_HOST: postgres
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    networks:
+      - dbt_jaffle_network
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - jaffle_data:/var/lib/posgresql/data
+    env_file:
+      - ./dotenv/.env
+
+volumes:
+  jaffle_data:
+    driver: local
+
+networks:
+  dbt_jaffle_network:
