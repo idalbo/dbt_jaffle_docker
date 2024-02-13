@@ -1,7 +1,7 @@
 jaffle_shop:
-  target: local
+  target: dev
   outputs:
-    local:
+    dev:
       type: postgres
       host: postgres
       user: postgres

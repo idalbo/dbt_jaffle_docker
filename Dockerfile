@@ -29,10 +29,12 @@ RUN echo 'mkdir -p /dbt-runner/.developer && touch /dbt-runner/.developer/bashrc
 
 
 COPY requirements.txt requirements.txt
+# COPY pre-commit-config.yaml pre_commit-config.yaml
+# COPY dbt-checkpoint.yaml dbt-checkpoint.yaml
 RUN pip install --upgrade pip
 RUN pip install --ignore-installed -r requirements.txt && rm -rf /root/.cache
 
-WORKDIR /dbt-runner
+WORKDIR /dbt-runner/jaffle_shop
 RUN mkdir -p /build_dbt_deps
 COPY jaffle_shop/dbt_project.yml /build_dbt_deps/dbt_project.yml
 COPY jaffle_shop/packages.yml /build_dbt_deps/packages.yml

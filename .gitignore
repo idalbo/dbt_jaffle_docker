@@ -6,4 +6,5 @@ jaffle_shop/target/
 jaffle_shop/target-base/
 jaffle_shop/dbt_modules/
 jaffle_shop/logs/
+jaffle_shop/dbt_packages/
 **/.DS_Store

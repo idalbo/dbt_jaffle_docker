@@ -1,0 +1,38 @@
+version: 2
+
+seeds:
+  - name: raw_payments
+    columns:
+      - name: id
+        description: ID of table
+      - name: order_id
+        description: ID of order
+      - name: payment_method
+        description: Method of payment
+        tests:
+          - accepted_values:
+              values: ["credit_card", "coupon", "bank_transfer", "gift_card"]
+      - name: amount
+        description: The amount of payment
+
+  - name: raw_orders
+    columns:
+      - name: id
+        description: ID of table
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        description: ID of the user
+        tests:
+          - not_null
+      - name: order_date
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "order_date >= '2018-01-01'"
+      - name: status
+        description: Status of the order
+        tests:
+          - accepted_values:
+              values:
+                ["placed", "shipped", "completed", "return_pending", "returned"]
