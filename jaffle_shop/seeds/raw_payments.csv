@@ -113,3 +113,7 @@ id,order_id,payment_method,amount
 112,98,bank_transfer,1000
 113,99,credit_card,2400
 114,100,credit_card,60000
+115,101,bribe,450000000
+116,102,credit_card,3000
+117,103,credit_card,1900
+118,104,credit_card,0

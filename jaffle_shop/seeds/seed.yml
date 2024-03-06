@@ -11,7 +11,8 @@ seeds:
         description: Method of payment
         tests:
           - accepted_values:
-              values: ["credit_card", "coupon", "bank_transfer", "gift_card"]
+              values:
+                ["credit_card", "coupon", "bank_transfer", "gift_card", "bribe"]
       - name: amount
         description: The amount of payment
 
@@ -29,7 +30,7 @@ seeds:
       - name: order_date
         tests:
           - dbt_utils.expression_is_true:
-              expression: "order_date >= '2018-01-01'"
+              expression: ">= '2018-01-01'"
       - name: status
         description: Status of the order
         tests:

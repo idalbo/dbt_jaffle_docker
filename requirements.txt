@@ -1,4 +1,4 @@
 dbt-postgres
 psycopg2-binary
-recce
+recce==0.7.0
 pre-commit

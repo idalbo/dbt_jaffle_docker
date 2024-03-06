@@ -29,6 +29,9 @@ models:
       - name: total_order_amount
         description: Total value (AUD) of a customer's orders
 
+      - name: average_order_value
+        description: Average order value (AUD) for a customer
+
   - name: orders
     description: This table has basic information about orders, as well as some derived facts based on payments
 
@@ -54,7 +57,8 @@ models:
         description: '{{ doc("orders_status") }}'
         tests:
           - accepted_values:
-              values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+              values:
+                ["placed", "shipped", "completed", "return_pending", "returned"]
 
       - name: amount
         description: Total amount (AUD) of the order
