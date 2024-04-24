@@ -1,0 +1,7 @@
+# This file was automatically generated
+name: jaffle_shop
+type: postgres
+options:
+  host: localhost
+  port: 65432
+  database: postgres
